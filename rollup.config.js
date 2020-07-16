@@ -3,6 +3,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import copy from 'rollup-plugin-copy';
+import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -15,6 +17,7 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		css({ output: 'public/build/extra.css'}),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
@@ -23,6 +26,22 @@ export default {
 			css: css => {
 				css.write('public/build/bundle.css');
 			}
+		}),
+		copy({
+			targets: [
+				{
+					src: 'node_modules/@ibm/plex/IBM-Plex-Mono/fonts/split/woff2/IBMPlexMono-Regular-Latin1.woff2',
+					dest: 'public/fonts'
+				},
+				{
+					src: 'node_modules/@ibm/plex/IBM-Plex-Mono/fonts/split/woff2/IBMPlexMono-Bold-Latin1.woff2',
+					dest: 'public/fonts'
+				},
+				{
+					src: 'node_modules/@ibm/plex/IBM-Plex-Mono/fonts/split/woff2/IBMPlexMono-ExtraLight-Latin1.woff2',
+					dest: 'public/fonts'
+				}
+			]
 		}),
 
 		// If you have external dependencies installed from

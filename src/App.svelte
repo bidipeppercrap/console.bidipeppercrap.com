@@ -1,4 +1,5 @@
 <script>
+	import '../node_modules/plane.css';
 	import { onMount } from 'svelte';
 	import { Router, Link, Route, navigate } from 'svelte-routing';
 	import { accessToken } from './stores';
@@ -9,7 +10,7 @@
 
 	onMount(() => {
 		if(!$accessToken) {
-			navigate('/login');
+			navigate('/login', { replace: true });
 		}
 	});
 

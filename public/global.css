@@ -1,0 +1,31 @@
+@font-face { font-family: 'IBM Plex Mono'; src: url('fonts/IBMPlexMono-Regular-Latin1.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; src: url('fonts/IBMPlexMono-Bold-Latin1.woff2') format('woff2'); font-weight: 700; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('fonts/IBMPlexMono-ExtraLight-Latin1.woff2') format('woff2'); font-weight: 100; }
+
+body {
+    margin: 0;
+}
+
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.login-form {
+    margin: var(--space);
+    display: grid;
+    grid-gap: var(--space);
+    width: 100%;
+}
+.login-form > label {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .login-form {
+        width: 300px;
+    }
+}

@@ -1,4 +1,5 @@
 <script>
+    import { onMount } from 'svelte';
     import { navigate } from 'svelte-routing';
     import axios from 'axios';
     import { accessToken } from './stores';
@@ -7,25 +8,36 @@
     let key = '';
 
     async function login() {
-        // let data = {
-        //     identity,
-        //     key
-        // };
-        // let token = await axios.post('/login', data);
-
-        // if (token) {
-        //     navigate('/', { replace: true });
-        // }
+        try {
+            let data = {
+                identity,
+                key
+            };
+            let { data: token } = await axios.post('/login', data);
+    
+            if (token) {
+                localStorage.setItem('accessToken', token);
+                accessToken.set(token);
+                navigate('/', { replace: true });
+            }
+        } catch (error) {           
+        }
     }
+
+    onMount(() => {
+        if($accessToken) {
+			navigate('/', { replace: true });
+		}
+    });
 
 </script>
 
-<div class="box">
+<div class="login-form plane">
     <label>
-        <input name="identity" type="text" class="box" bind:value={identity}>
+        <input placeholder="username" name="identity" type="text" class="input plane" bind:value={identity}>
     </label>
     <label>
-        <input name="key" type="password" class="box" bind:value={key}>
+        <input placeholder="password" name="key" type="password" class="input plane" bind:value={key}>
     </label>
-    <button class="btn box" on:click={login()}>Sign In</button>
+    <button class="btn plane" on:click={login}>Sign In</button>
 </div>

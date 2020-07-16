@@ -3,4 +3,6 @@
 
 </script>
 
-<LoginForm/>
+<div class="login-page">
+    <LoginForm/>
+</div>
