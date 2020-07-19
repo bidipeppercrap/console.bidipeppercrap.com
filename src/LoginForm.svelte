@@ -6,6 +6,7 @@
 
     let identity = '';
     let key = '';
+    let error = '';
 
     async function login() {
         try {
@@ -14,13 +15,14 @@
                 key
             };
             let { data: token } = await axios.post('/login', data);
-    
+
             if (token) {
                 localStorage.setItem('accessToken', token);
                 accessToken.set(token);
                 navigate('/', { replace: true });
             }
-        } catch (error) {           
+        } catch (e) {
+            error = 'you got the wrong credentials';
         }
     }
 
@@ -32,6 +34,11 @@
 
 </script>
 
+{#if error}
+    <div class="login-errors">
+        <div class="plane plane-error">{error}</div>
+    </div>
+{/if}
 <div class="login-form plane">
     <label>
         <input placeholder="username" name="identity" type="text" class="input plane" bind:value={identity}>
