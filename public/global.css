@@ -35,9 +35,39 @@ body {
     flex-direction: column;
 }
 
+.navbar {
+    position: fixed;
+    margin: var(--space);
+    min-width: calc(100% - (var(--space) * 2));
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas:
+    'logo menu'
+    'link link';
+    grid-template-columns: auto 1fr;
+    grid-gap: var(--space);
+}
+.navbar > .navbar-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar > .navbar-item {
+    text-decoration: none;
+    display: none;
+    color: var(--accent-color);
+}
+.navbar > .navbar-hamburger {
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .login-page {
         width: 300px;
         margin: auto;
+    }
+
+    .navbar > .navbar-item {
+        display: block;
     }
 }
