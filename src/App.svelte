@@ -27,13 +27,13 @@
 	<Route path="login" component={Login}/>
 	{#if location.pathname != 'login'}
 		<nav class="plane navbar">
-			<a class="navbar-logo img btn plane" href="/" use:link><img src="logo_long.svg" alt="logo" height="24px"></a>
-			<btn class="navbar-hamburger btn plane" on:click={handleToggle}>{toggleMenu ? 'x' : 'menu'}</btn>
-			<a class="navbar-item btn plane" href="/posts" use:link>posts</a>
-			<a class="navbar-item btn plane" href="/projects" use:link>projects</a>
-			<a class="navbar-item btn plane" href="/favorites" use:link>favorites</a>
-			<a class="navbar-item btn plane" href="/" use:link></a>
-			<a class="navbar-item btn plane" href="/" use:link></a>
+			<a class="navbar-logo img btn" href="/" use:link><img src="logo_long.svg" alt="logo" height="24px"></a>
+			<btn class="navbar-hamburger btn" on:click={handleToggle}>{toggleMenu ? 'x' : 'menu'}</btn>
+			<a class="navbar-item btn" href="/posts" use:link>posts</a>
+			<a class="navbar-item btn" href="/projects" use:link>projects</a>
+			<a class="navbar-item btn" href="/favorites" use:link>favorites</a>
+			<a class="navbar-item btn" href="/" use:link></a>
+			<a class="navbar-item btn" href="/" use:link></a>
 		</nav>
 		<div class="wrapper">
 			<Route path="favorites"/>
