@@ -1,6 +1,6 @@
 # Console - bidipeppercrap.com
 
-Console web access of bidipeppercrap.com
+Web access console of bidipeppercrap.com
 
 ### Technology Stack
 [<img align="left" width="26px" src="https://svelte.dev/favicon.png" alt="svelte">][svelte]
