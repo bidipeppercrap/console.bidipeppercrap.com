@@ -21,8 +21,7 @@
   "dependencies": {
     "@ibm/plex": "^5.1.0",
     "axios": "^0.19.2",
-    "plane": "^0.2.0",
-    "plane.css": "^1.6.1",
+    "plane.css": "^1.6.2",
     "sirv-cli": "^0.4.4",
     "svelte-routing": "^1.4.2"
   }
