@@ -28,12 +28,14 @@
 	{#if location.pathname != 'login'}
 		<nav class="plane navbar">
 			<a class="navbar-logo img btn" href="/" use:link><img src="logo_long.svg" alt="logo" height="24px"></a>
-			<btn class="navbar-hamburger btn" on:click={handleToggle}>{toggleMenu ? 'x' : 'menu'}</btn>
-			<a class="navbar-item btn" href="/posts" use:link>posts</a>
-			<a class="navbar-item btn" href="/projects" use:link>projects</a>
-			<a class="navbar-item btn" href="/favorites" use:link>favorites</a>
-			<a class="navbar-item btn" href="/" use:link></a>
-			<a class="navbar-item btn" href="/" use:link></a>
+			<btn class={ (toggleMenu ? 'alert ' : '') + "navbar-hamburger btn"} on:click={handleToggle}>{toggleMenu ? 'x' : 'menu'}</btn>
+			<div class="navbar-items" style={toggleMenu ? 'display: grid;' : 'display: none;'}>
+				<a class="navbar-item btn" href="/posts" use:link>posts</a>
+				<a class="navbar-item btn" href="/projects" use:link>projects</a>
+				<a class="navbar-item btn" href="/favorites" use:link>favorites</a>
+				<a class="navbar-item btn" href="/" use:link>wishlist</a>
+				<a class="navbar-item btn" href="/" use:link>contacts</a>
+			</div>
 		</nav>
 		<Route path="favorites"/>
 		<Route path="projects"/>

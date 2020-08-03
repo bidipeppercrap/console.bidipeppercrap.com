@@ -38,26 +38,31 @@ body {
 .navbar {
     position: fixed;
     margin: var(--space);
-    min-width: calc(100% - (var(--space) * 2));
     box-sizing: border-box;
     display: grid;
     grid-template-areas:
     'logo menu'
-    'link link';
+    'links links';
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
     grid-gap: var(--space);
 }
 .navbar > .navbar-logo {
     display: flex;
+    grid-area: logo;
     align-items: center;
     justify-content: center;
 }
-.navbar > .navbar-item {
+.navbar > .navbar-items {
+    grid-area: links;
+    grid-gap: var(--space);
+}
+.navbar-items > a {
     text-decoration: none;
-    display: none;
     color: var(--accent-color);
 }
 .navbar > .navbar-hamburger {
+    grid-area: menu;
     text-align: center;
 }
 
