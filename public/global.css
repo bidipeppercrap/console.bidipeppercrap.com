@@ -73,6 +73,10 @@ body {
     text-decoration: none;
     color: var(--accent-color);
 }
+a.active {
+    box-shadow: 0px 0px var(--accent-color);
+    transform: translate(var(--plane-translate-coordinate));
+}
 
 @media (min-width: 768px) {
     .login-page {
