@@ -16,7 +16,7 @@ body {
     grid-template-rows: 1fr auto 1fr;
 }
 
-.login-errors {
+.login-messages {
     display: flex;
     flex-direction: column-reverse;
     grid-area: e;

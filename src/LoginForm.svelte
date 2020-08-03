@@ -7,8 +7,11 @@
     let identity = '';
     let key = '';
     let error = '';
+    let message = '';
 
     async function login() {
+        error = '';
+        message = 'loading...';
         try {
             let data = {
                 identity,
@@ -23,6 +26,8 @@
             }
         } catch (e) {
             error = 'you got the wrong credentials';
+        } finally {
+            message = '';
         }
     }
 
@@ -35,16 +40,20 @@
 </script>
 
 {#if error}
-    <div class="login-errors">
-        <div class="plane plane-error">{error}</div>
+    <div class="login-messages">
+        <div class="alert">{error}</div>
+    </div>
+{:else if message}
+    <div class="login-messages">
+        <div class="plane">{message}</div>
     </div>
 {/if}
 <div class="login-form plane">
     <label>
-        <input placeholder="username" name="identity" type="text" class="input plane" bind:value={identity}>
+        <input placeholder="username" name="identity" type="text" class="form-control" bind:value={identity}>
     </label>
     <label>
-        <input placeholder="password" name="key" type="password" class="input plane" bind:value={key}>
+        <input placeholder="password" name="key" type="password" class="form-control" bind:value={key}>
     </label>
-    <button class="btn plane" on:click={login}>Sign In</button>
+    <button class="btn" on:click={login}>Sign In</button>
 </div>

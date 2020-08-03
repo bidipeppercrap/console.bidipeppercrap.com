@@ -35,11 +35,9 @@
 			<a class="navbar-item btn" href="/" use:link></a>
 			<a class="navbar-item btn" href="/" use:link></a>
 		</nav>
-		<div class="wrapper">
-			<Route path="favorites"/>
-			<Route path="projects"/>
-			<Route path="posts"/>
-			<Route path="/" component={Home}/>
-		</div>
+		<Route path="favorites"/>
+		<Route path="projects"/>
+		<Route path="posts"/>
+		<Route path="/" component={Home}/>
 	{/if}
 </Router>
