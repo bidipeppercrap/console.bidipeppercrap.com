@@ -57,17 +57,21 @@ body {
     justify-content: center;
 }
 .navbar > .navbar-items {
+    display: none;
     grid-area: links;
     gap: var(--space);
     padding-top: var(--space);
 }
-.navbar-items > a {
-    text-decoration: none;
-    color: var(--accent-color);
-}
 .navbar > .navbar-hamburger {
     grid-area: menu;
     text-align: center;
+}
+.navbar > .navbar-items-toggled {
+    display: grid;
+}
+.navbar-items > a {
+    text-decoration: none;
+    color: var(--accent-color);
 }
 
 @media (min-width: 768px) {
@@ -76,7 +80,17 @@ body {
         margin: auto;
     }
 
-    .navbar > .navbar-item {
-        display: block;
+    .navbar-wrapper {
+        width: auto;
+        min-height: 100%;
+    }
+    .navbar {
+        column-gap: 0px;
+    }
+    .navbar > .navbar-hamburger {
+        display: none;
+    }
+    .navbar > .navbar-items {
+        display: grid;
     }
 }
