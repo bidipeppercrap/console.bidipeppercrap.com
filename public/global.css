@@ -85,6 +85,7 @@ a.active {
     }
 
     .navbar-wrapper {
+        display: grid;
         width: auto;
         min-height: 100%;
     }
@@ -96,5 +97,6 @@ a.active {
     }
     .navbar > .navbar-items {
         display: grid;
+        grid-auto-rows: min-content;
     }
 }
