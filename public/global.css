@@ -28,16 +28,19 @@ body {
     grid-area: c;
     margin: var(--space);
     display: grid;
-    grid-gap: var(--space);
+    gap: var(--space);
 }
 .login-form > label {
     display: flex;
     flex-direction: column;
 }
 
-.navbar {
+.navbar-wrapper {
     position: fixed;
-    margin: var(--space);
+    width: 100%;
+    padding: var(--space);
+}
+.navbar {
     box-sizing: border-box;
     display: grid;
     grid-template-areas:
@@ -45,7 +48,7 @@ body {
     'links links';
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
-    grid-gap: var(--space);
+    column-gap: var(--space);
 }
 .navbar > .navbar-logo {
     display: flex;
@@ -55,7 +58,8 @@ body {
 }
 .navbar > .navbar-items {
     grid-area: links;
-    grid-gap: var(--space);
+    gap: var(--space);
+    padding-top: var(--space);
 }
 .navbar-items > a {
     text-decoration: none;

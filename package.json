@@ -9,20 +9,20 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^12.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "rollup": "^2.3.4",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "rollup": "^2.23.0",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-css-only": "^2.1.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.0.0"
+    "svelte": "^3.24.0"
   },
   "dependencies": {
-    "@ibm/plex": "^5.0.0",
+    "@ibm/plex": "^5.1.0",
     "axios": "^0.19.2",
     "plane": "^0.2.0",
-    "plane.css": "^1.6.0",
+    "plane.css": "^1.6.1",
     "sirv-cli": "^0.4.4",
     "svelte-routing": "^1.4.2"
   }

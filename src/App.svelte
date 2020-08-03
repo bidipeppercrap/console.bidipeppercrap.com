@@ -26,6 +26,7 @@
 <Router {url}>
 	<Route path="login" component={Login}/>
 	{#if location.pathname != 'login'}
+	<div class="navbar-wrapper">
 		<nav class="plane navbar">
 			<a class="navbar-logo img btn" href="/" use:link><img src="logo_long.svg" alt="logo" height="24px"></a>
 			<btn class={ (toggleMenu ? 'alert ' : '') + "navbar-hamburger btn"} on:click={handleToggle}>{toggleMenu ? 'x' : 'menu'}</btn>
@@ -37,6 +38,7 @@
 				<a class="navbar-item btn" href="/" use:link>contacts</a>
 			</div>
 		</nav>
+	</div>
 		<Route path="favorites"/>
 		<Route path="projects"/>
 		<Route path="posts"/>
