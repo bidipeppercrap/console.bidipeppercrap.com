@@ -1,9 +1,10 @@
 import App from './App.svelte';
 import axios from 'axios';
+import config from './config';
 
 import { accessToken } from './stores';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = config.apiUrl;
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
 
 const app = new App({

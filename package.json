@@ -19,6 +19,7 @@
     "svelte": "^3.24.0"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.11.0",
     "@ibm/plex": "^5.1.0",
     "axios": "^0.19.2",
     "plane.css": "^1.6.2",
