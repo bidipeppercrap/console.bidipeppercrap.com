@@ -29,6 +29,8 @@
 			await authZero.loginWithPopup();
 		}
 
+		isAuthenticated.set(await authZero.isAuthenticated());
+
 		const token = await authZero.getTokenSilently();
 		accessToken.set(token);
 
