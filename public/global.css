@@ -135,15 +135,31 @@ a.active {
 
 .content__list__item {
     margin: 0;
-    padding: 0;
-    padding: var(--space);
 }
 
 .main__wrapper {
     height: 100%;
 }
 
+.post__edit__control {
+    display: grid;
+    grid-template-areas:'back delete';
+    grid-template-columns: 1fr auto;
+    gap: var(--space);
+}
+.post__edit__control > .btn:nth-child(1) {
+    grid-area: back;
+}
+.post__edit__control > .btn:nth-child(2) {
+    grid-area: delete;
+}
+
 @media (min-width: 768px) {
+    .post__edit__control {
+        grid-template-areas: 'back space delete';
+        grid-template-columns: auto 1fr auto;
+    }
+
     .fluid__container {
         padding: var(--space);
         padding-left: 0;

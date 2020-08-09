@@ -1,7 +1,7 @@
 <script>
 	import '../node_modules/plane.css';
 	import { onMount } from 'svelte';
-	import { Router, link, Route, navigate } from 'svelte-routing';
+	import { Router, Route } from 'svelte-routing';
 	import { accessToken, isAuthenticated } from './stores';
     import createAuth0Client from '@auth0/auth0-spa-js';
 	import config from './config';
@@ -12,6 +12,7 @@
 	import NavLink from './NavLink.svelte'
 
 	export let url = '';
+	let params;
 	let authZero;
 
 	let toggleMenu = false;
@@ -66,10 +67,12 @@
 		</nav>
 	</div>
 	<main class="main__wrapper">
+		<Route path="posts/*" component={Posts} />
+		<Route path="projects" />
 		<Route path="favorites"/>
-		<Route path="projects"/>
-		<Route path="posts" component={Posts}/>
-		<Route path="/" component={Home}/>
+		<Route path="wishlist" />
+		<Route path="contacts" />
+		<Route path="/" component={Home} />
 	</main>
 	{/if}
 </Router>
