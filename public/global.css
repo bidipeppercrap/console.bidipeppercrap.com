@@ -45,6 +45,7 @@ body {
 
 .navbar-wrapper {
     position: fixed;
+    bottom: 0;
     width: 100%;
     padding: var(--space);
 }
@@ -52,8 +53,9 @@ body {
     box-sizing: border-box;
     display: grid;
     grid-template-areas:
+    'links links'
     'logo menu'
-    'links links';
+    ;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     column-gap: var(--space);
@@ -68,7 +70,7 @@ body {
     display: none;
     grid-area: links;
     gap: var(--space);
-    padding-top: var(--space);
+    padding-bottom: var(--space);
 }
 .navbar > .navbar-hamburger {
     grid-area: menu;
@@ -95,10 +97,15 @@ a.active {
     .navbar-wrapper {
         display: grid;
         width: auto;
+        bottom: auto;
         min-height: 100%;
     }
     .navbar {
         column-gap: 0px;
+        grid-template-areas:
+        'logo menu'
+        'links links'
+        ;
     }
     .navbar > .navbar-hamburger {
         display: none;
@@ -106,5 +113,7 @@ a.active {
     .navbar > .navbar-items {
         display: grid;
         grid-auto-rows: min-content;
+        padding-top: var(--space);
+        padding-bottom: 0;
     }
 }
