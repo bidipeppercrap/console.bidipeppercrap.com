@@ -7,6 +7,7 @@
 	import config from './config';
 
 	import Home from './routes/Home.svelte';
+	import Posts from './routes/Posts.svelte';
 
 	import NavLink from './NavLink.svelte'
 
@@ -64,9 +65,11 @@
 			</div>
 		</nav>
 	</div>
-	<Route path="favorites"/>
-	<Route path="projects"/>
-	<Route path="posts"/>
-	<Route path="/" component={Home}/>
+	<main class="main__wrapper">
+		<Route path="favorites"/>
+		<Route path="projects"/>
+		<Route path="posts" component={Posts}/>
+		<Route path="/" component={Home}/>
+	</main>
 	{/if}
 </Router>

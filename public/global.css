@@ -4,6 +4,7 @@
 
 body {
     margin: 0;
+    margin-bottom: 108px;
 }
 
 .notice {
@@ -48,6 +49,7 @@ body {
     bottom: 0;
     width: 100%;
     padding: var(--space);
+    z-index: 1;
 }
 .navbar {
     box-sizing: border-box;
@@ -88,7 +90,78 @@ a.active {
     transform: translate(var(--plane-translate-coordinate));
 }
 
+.welcome {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.fluid__container {
+    padding: var(--space);
+    padding-bottom: 0;
+    min-height: 100%;
+    display: grid;
+    grid-template-areas:
+    'title'
+    'content'
+    ;
+    grid-template-rows: 1fr 1fr;
+}
+
+.content__title {
+    grid-area: title;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    grid-area: content;
+    display: inline-grid;
+    gap: var(--space);
+    grid-auto-rows: min-content;
+    min-height: 100%;
+    padding: var(--space);
+}
+
+.content__lists {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    gap: var(--space);
+}
+
+.content__list__item {
+    margin: 0;
+    padding: 0;
+    padding: var(--space);
+}
+
+.main__wrapper {
+    height: 100%;
+}
+
 @media (min-width: 768px) {
+    .fluid__container {
+        padding: var(--space);
+        padding-left: 0;
+        grid-template-areas:
+        'content'
+        'content'
+        ;
+    }
+
+    .content__title {
+        display: none;
+    }
+
+    body {
+        margin-bottom: 0;
+        margin-left: 277px;
+    }
+    
     .login-page {
         width: 300px;
         margin: auto;
@@ -98,6 +171,7 @@ a.active {
         display: grid;
         width: auto;
         bottom: auto;
+        left: 0;
         min-height: 100%;
     }
     .navbar {
