@@ -66,7 +66,7 @@
 			</div>
 		</nav>
 	</div>
-	<main class="main__wrapper">
+	<main role="main" class="main__wrapper">
 		<Route path="posts/*" component={Posts} />
 		<Route path="projects" />
 		<Route path="favorites"/>

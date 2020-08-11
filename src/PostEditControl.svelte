@@ -2,6 +2,7 @@
   import { navigate } from "svelte-routing";
 
   export let id;
+  export let togglePreview;
 
   function back() {
       navigate("/posts");
@@ -14,6 +15,6 @@
 
 <div class="post__edit__control">
     <button class="btn" on:click={() => back()}>back</button>
-    <button class="btn">preview</button>
+    <button class="btn" on:click={() => togglePreview = !togglePreview}>{togglePreview ? "editor" : "preview"}</button>
     <button class="btn alert" on:click={() => deletePost(id)}>delete</button>
 </div>
