@@ -163,6 +163,7 @@ a.active {
 
 .save__control {
     display: grid;
+    grid-auto-flow: column;
     gap: var(--space);
 }
 
@@ -185,6 +186,10 @@ a.active {
 }
 
 @media (min-width: 768px) {
+    .save__control {
+        grid-auto-flow: row;
+    }
+
     .post__form__control > textarea.form-control {
         min-height: calc(var(--space) * 15);
     }
