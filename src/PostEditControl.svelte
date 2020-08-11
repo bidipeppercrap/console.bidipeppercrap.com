@@ -14,5 +14,6 @@
 
 <div class="post__edit__control">
     <button class="btn" on:click={() => back()}>back</button>
+    <button class="btn">preview</button>
     <button class="btn alert" on:click={() => deletePost(id)}>delete</button>
 </div>

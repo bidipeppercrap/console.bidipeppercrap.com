@@ -21,14 +21,16 @@ import PostEdit from "./PostEdit.svelte";
         <div class="content__title">Posts</div>
         <div class="content plane">
             <Route path="/">
-                <PostControl />
-                <ul class="content__lists">
-                    {#each posts as {id, title, content}, i}
-                        <li class="content__list__item btn" on:click={editPost(id)}>
-                            {title ?? content}
-                        </li>
-                    {/each}
-                </ul>
+                <div class="content__lists">
+                    <PostControl />
+                    <ul>
+                        {#each posts as {id, title, content}, i}
+                            <li class="content__list__item btn" on:click={editPost(id)}>
+                                {title ?? content}
+                            </li>
+                        {/each}
+                    </ul>
+                </div>
             </Route>
             <Route path=":id" component={PostEdit} />
         </div>
