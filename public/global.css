@@ -2,9 +2,13 @@
 @font-face { font-family: 'IBM Plex Mono'; src: url('fonts/IBMPlexMono-Bold-Latin1.woff2') format('woff2'); font-weight: 700; }
 @font-face { font-family: 'IBM Plex Mono'; src: url('fonts/IBMPlexMono-ExtraLight-Latin1.woff2') format('woff2'); font-weight: 100; }
 
+:root {
+    --navigation__space: 108px;
+}
+
 body {
     margin: 0;
-    margin-bottom: 108px;
+    margin-bottom: var(--navigation__space);
 }
 
 .notice {
@@ -107,6 +111,7 @@ a.active {
     'content'
     ;
     grid-template-rows: 50vh 1fr;
+    margin-bottom: var(--navigation__space);
 }
 
 .content__title {
@@ -178,11 +183,14 @@ a.active {
     display: grid;
     gap: var(--space);
     grid-auto-flow: row;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: "l" "l" "l";
+    grid-template-rows: auto 1fr auto;
     min-height: 100%;
 }
-.post__form__control > textarea.form-control {
-    resize: none;
+.post__form__control > h1 {
+    grid-area: l;
+    align-self: center;
+    justify-self: center;
 }
 
 @media (min-width: 768px) {
@@ -190,10 +198,6 @@ a.active {
         grid-auto-flow: row;
     }
 
-    .post__form__control > textarea.form-control {
-        min-height: calc(var(--space) * 15);
-    }
-    
     .post__edit__control {
         grid-template-areas: 'back preview delete';
         grid-template-columns: auto 1fr auto;
@@ -207,6 +211,7 @@ a.active {
         'content'
         ;
         grid-template-rows: 1fr 1fr;
+        margin-bottom: 0;
     }
 
     .content__title {

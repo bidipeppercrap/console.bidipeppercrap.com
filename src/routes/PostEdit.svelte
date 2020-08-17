@@ -1,8 +1,9 @@
 <script>
+    import PostEditForm from "../PostEditForm.svelte";
     import PostEditControl from "../PostEditControl.svelte";
     import SaveControl from "../SaveControl.svelte";
-    import PostContent from "../PostContent.svelte";
-    import { onMount } from "svelte";
+    import PostRender from "../PostRender.svelte";
+    import { onMount, onDestroy } from "svelte";
     import axios from "axios";
 
     export let id;
@@ -11,23 +12,36 @@
         content: ""
     };
     let togglePreview = false;
+    let isLoading = true;
 
     onMount(async () => {
         const { data } = await axios.get(`posts/${id}`);
 
         post = data;
+
+        isLoading = false;
     });
+
+    onDestroy(() => clearForm());
+
+    function clearForm() {
+        post.title = "";
+        post.content = "";
+    }
 </script>
 
 <div class="post__form__control">
-    <PostEditControl {id} bind:togglePreview={togglePreview}/>
-
-    {#if !togglePreview}
-        <input name="title" id="title" type="text" class="form-control" placeholder="title" bind:value={post.title}>
-        <textarea name="content" id="content" class="form-control" bind:value={post.content}></textarea>
+    {#if isLoading}
+        <h1>loading...</h1>
     {:else}
-        <PostContent {post}/>
-    {/if}
+        <PostEditControl {id} bind:togglePreview={togglePreview}/>
 
-    <SaveControl />
+        {#if !togglePreview}
+            <PostEditForm {post}/>
+        {:else}
+            <PostRender {post}/>
+        {/if}
+
+        <SaveControl />
+    {/if}
 </div>

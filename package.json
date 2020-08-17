@@ -10,13 +10,13 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
-    "rollup": "^2.23.0",
+    "rollup": "^2.23.1",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-css-only": "^2.1.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.24.0"
+    "svelte": "^3.24.1"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.11.0",
@@ -26,7 +26,7 @@
     "axios": "^0.19.2",
     "dompurify": "^2.0.12",
     "marked": "^1.1.1",
-    "plane.css": "^1.6.2",
+    "plane.css": "^1.6.3",
     "sirv-cli": "^0.4.4",
     "svelte-routing": "^1.4.2"
   }
