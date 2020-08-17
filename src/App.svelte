@@ -1,78 +1,91 @@
 <script>
-	import '../node_modules/plane.css';
-	import { onMount } from 'svelte';
-	import { Router, Route } from 'svelte-routing';
-	import { accessToken, isAuthenticated } from './stores';
-    import createAuth0Client from '@auth0/auth0-spa-js';
-	import config from './config';
+  import "../node_modules/plane.css";
+  import createAuth0Client from "@auth0/auth0-spa-js";
+  import axios from "axios";
+  import config from "./config";
 
-	import Home from './routes/Home.svelte';
-	import Posts from './routes/Posts.svelte';
+  import { onMount } from "svelte";
+  import { Router, Route } from "svelte-routing";
+  import { accessToken, isAuthenticated } from "./store/auth";
 
-	import NavLink from './NavLink.svelte'
+  import Home from "./pages/Home.svelte";
+  import Posts from "./pages/Posts.svelte";
 
-	export let url = '';
-	let params;
-	let authZero;
+  import NavLink from "./NavLink.svelte";
 
-	let toggleMenu = false;
+  export let url = "";
 
-	onMount(async () => {
-		authZero = await createAuth0Client({
-			audience: config.auth0.audience,
-            domain: config.auth0.domain,
-			client_id: config.auth0.client_id,
-			useRefreshTokens: true
-		});
+  axios.defaults.baseURL = config.apiUrl;
 
-		isAuthenticated.set(await authZero.isAuthenticated());
+  let params;
+  let authZero;
 
-		if (!$isAuthenticated) {
-			await authZero.loginWithPopup();
-		}
+  let toggleMenu = false;
 
-		isAuthenticated.set(await authZero.isAuthenticated());
+  onMount(async () => {
+    authZero = await createAuth0Client({
+      audience: config.auth0.audience,
+      domain: config.auth0.domain,
+      client_id: config.auth0.client_id,
+      useRefreshTokens: true,
+    });
 
-		const token = await authZero.getTokenSilently();
-		accessToken.set(token);
+    isAuthenticated.set(await authZero.isAuthenticated());
 
-		localStorage.setItem('isAuthenticated', $isAuthenticated);
-	});
+    if (!$isAuthenticated) {
+      await authZero.loginWithPopup();
+    }
 
-	function handleToggle() {
-		toggleMenu = !toggleMenu;
-	}
+    isAuthenticated.set(await authZero.isAuthenticated());
 
+    const token = await authZero.getTokenSilently();
+    accessToken.set(token);
+
+	localStorage.setItem("isAuthenticated", $isAuthenticated);
+	
+	axios.defaults.headers.common["Authorization"] = `Bearer ${$accessToken}`;
+  });
+
+  function handleToggle() {
+    toggleMenu = !toggleMenu;
+  }
 </script>
 
 <Router {url}>
-	{#if !$isAuthenticated}
-	<div class="notice">
-		<div class="plane">
-			Please log in
-		</div>
-	</div>
-	{:else}
-	<div class="navbar-wrapper">
-		<nav class="plane navbar">
-			<NavLink className="navbar-logo img btn" to="/"><img src="logo_long.svg" alt="logo" height="24px"></NavLink>
-			<btn class={(toggleMenu ? "alert " : "") + "navbar-hamburger btn"} on:click={handleToggle}>{toggleMenu ? 'x' : 'menu'}</btn>
-			<div class={(toggleMenu ? "navbar-items-toggled " : "") + "navbar-items"}>
-				<NavLink className="navbar-item btn" to="/posts">posts</NavLink>
-				<NavLink className="navbar-item btn" to="/projects">projects</NavLink>
-				<NavLink className="navbar-item btn" to="/favorites">favorites</NavLink>
-				<NavLink className="navbar-item btn" to="/wishlist">wishlist</NavLink>
-				<NavLink className="navbar-item btn" to="/contacts">contacts</NavLink>
-			</div>
-		</nav>
-	</div>
-	<main role="main" class="main__wrapper">
-		<Route path="posts/*" component={Posts} />
-		<Route path="projects" />
-		<Route path="favorites"/>
-		<Route path="wishlist" />
-		<Route path="contacts" />
-		<Route path="/" component={Home} />
-	</main>
-	{/if}
+  {#if !$isAuthenticated}
+    <div class="notice">
+      <div class="plane">Please log in</div>
+    </div>
+  {:else}
+    <div class="navbar-wrapper">
+      <nav class="plane navbar">
+        <NavLink className="navbar-logo img btn" to="/">
+          <img src="logo_long.svg" alt="logo" height="24px" />
+        </NavLink>
+        <btn
+          class={(toggleMenu ? 'alert ' : '') + 'navbar-hamburger btn'}
+          on:click={handleToggle}>
+          {toggleMenu ? 'x' : 'menu'}
+        </btn>
+        <div
+          class={(toggleMenu ? 'navbar-items-toggled ' : '') + 'navbar-items'}>
+          <NavLink className="navbar-item btn" to="/posts">posts</NavLink>
+          <NavLink className="navbar-item btn" to="/projects">projects</NavLink>
+          <NavLink className="navbar-item btn" to="/favorites">
+            favorites
+          </NavLink>
+          <NavLink className="navbar-item btn" to="/wishlist">wishlist</NavLink>
+          <NavLink className="navbar-item btn" to="/contacts">contacts</NavLink>
+        </div>
+      </nav>
+    </div>
+    <main role="main" class="main__wrapper">
+      <Route path="posts/*" component={Posts} />
+      <Route path="projects" />
+      <Route path="favorites" />
+      <Route path="wishlist" />
+      <Route path="contacts" />
+      <Route path="/" component={Home} />
+    </main>
+  {/if}
 </Router>

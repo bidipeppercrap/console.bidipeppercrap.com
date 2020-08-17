@@ -7,12 +7,17 @@
     import axios from "axios";
 
     export let id;
+
     let post = {
+        id: null,
         title: "",
         content: ""
     };
+
     let togglePreview = false;
     let isLoading = true;
+    let errorMessage = "";
+    let message = "";
 
     onMount(async () => {
         const { data } = await axios.get(`posts/${id}`);
@@ -34,7 +39,19 @@
     {#if isLoading}
         <h1>loading...</h1>
     {:else}
-        <PostEditControl {id} bind:togglePreview={togglePreview}/>
+        {#if errorMessage}
+            <div class="alert">{errorMessage}</div>
+        {:else if message}
+            <div class="plane">{message}</div>
+        {/if}
+
+        <PostEditControl
+            {post}
+            bind:isLoading={isLoading}
+            bind:message={message}
+            bind:errorMessage={errorMessage}
+            bind:togglePreview={togglePreview}
+        />
 
         {#if !togglePreview}
             <PostEditForm {post}/>
@@ -42,6 +59,11 @@
             <PostRender {post}/>
         {/if}
 
-        <SaveControl />
+        <SaveControl
+            {post}
+            bind:isLoading={isLoading}
+            bind:message={message}
+            bind:errorMessage={errorMessage}
+        />
     {/if}
 </div>
