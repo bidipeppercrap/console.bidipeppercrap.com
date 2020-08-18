@@ -1,18 +1,26 @@
-import { writeable, readable } from "svelte/store";
+import { writable } from "svelte/store";
 import axios from "axios";
 
 import { accessToken } from "./auth";
 
-export const posts = writeable([]);
+const POSTS = [];
+const { subscribe, set } = writable(POSTS);
 
-export const fetchPost = () => {
-    const { data } = axios({
-        method: "GET",
-        url: "posts",
-        headers: {
-            "Authorization": `Bearer ${accessToken}`
-        }
-    });
-    
-    posts.update(data);
-}
+const fetchPost = async () => {
+  set([]);
+
+  const { data: { data } } = await axios({
+    method: "GET",
+    url: "posts",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  set(data);
+};
+
+export default {
+  subscribe,
+  fetchPost,
+};

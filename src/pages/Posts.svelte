@@ -1,28 +1,22 @@
 <script>
 import { onMount, onDestroy } from "svelte";
 import { Router, Route, navigate } from "svelte-routing";
-import axios from "axios";
 import PostControl from '../PostControl.svelte';
 import PostEdit from "./PostEdit.svelte";
-
-let posts = [];
+import posts from "../store/posts";
 
 let isLoading = true;
 let errorMessage = "";
 
 onMount(async () => {
-    await getPosts();
-});
-
-async function getPosts() {
     try {
-        posts = (await axios.get("posts")).data.data;
+        await posts.fetchPost();
     } catch (error) {
-        errorMessage = error.message;
+        errorMessage = error.message;        
     } finally {
         isLoading = false;
     }
-}
+});
 
 function editPost(id) {
     navigate(`posts/${id}`, { replace: true });
@@ -51,7 +45,7 @@ function editPost(id) {
                     <div class="content__lists">
                         <PostControl />
                         <ul>
-                            {#each posts as {id, title, content}, i}
+                            {#each $posts as {id, title, content}, i}
                                 <li class="content__list__item btn" on:click={editPost(id)}>
                                     {title ?? content}
                                 </li>

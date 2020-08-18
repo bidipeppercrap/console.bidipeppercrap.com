@@ -2,6 +2,7 @@
   import axios from "axios";
   import { navigate } from "svelte-routing";
   import { accessToken } from "./store/auth";
+  import posts from "./store/posts";
 
   export let post;
   export let togglePreview;
@@ -10,6 +11,7 @@
 
   function back() {
       navigate("/posts", { replace: true });
+      posts.fetchPost();
   }
 
   async function deletePost(id) {

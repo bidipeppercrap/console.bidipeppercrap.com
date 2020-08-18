@@ -23,6 +23,14 @@
   let toggleMenu = false;
 
   onMount(async () => {
+    await promptLogin();
+  });
+
+  function handleToggle() {
+    toggleMenu = !toggleMenu;
+  }
+
+  async function promptLogin() {
     authZero = await createAuth0Client({
       audience: config.auth0.audience,
       domain: config.auth0.domain,
@@ -41,20 +49,21 @@
     const token = await authZero.getTokenSilently();
     accessToken.set(token);
 
-	localStorage.setItem("isAuthenticated", $isAuthenticated);
-	
-	axios.defaults.headers.common["Authorization"] = `Bearer ${$accessToken}`;
-  });
-
-  function handleToggle() {
-    toggleMenu = !toggleMenu;
+    localStorage.setItem("isAuthenticated", $isAuthenticated);
+    
+    axios.defaults.headers.common["Authorization"] = `Bearer ${$accessToken}`;
   }
 </script>
 
 <Router {url}>
   {#if !$isAuthenticated}
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
     <div class="notice">
-      <div class="plane">Please log in</div>
+      <button class="btn" on:click={() => promptLogin()}>Login</button>
     </div>
   {:else}
     <div class="navbar-wrapper">
